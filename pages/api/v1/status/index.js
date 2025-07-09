@@ -25,7 +25,7 @@ async function index(request, response) {
       database: {
         version: databaseVersion,
         max_connections: parseInt(databaseMaxConnections),
-        connections_: databaseOpeningConnections,
+        connections_opening: databaseOpeningConnections,
       },
     },
   });
