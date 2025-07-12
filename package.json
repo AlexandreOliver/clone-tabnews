@@ -4,9 +4,10 @@
   "description": "Projeto para aprimoramento das minhas habilidades em Desenvolvimento Web",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run service:up && next dev",
+    "wait-for-postgres": "node infra/scripts/wait-for-postgres.js",
+    "dev": "npm run service:up && npm run wait-for-postgres && npm run migrations:up && next dev",
     "service:up": "docker compose -f infra/compose.yaml up -d",
-    "service:down": "docker compose -f infra/compose.yaml down",
+    "service:down": "docker compose -f infra/compose.yaml down && docker volume prune",
     "service:stop": "docker compose -f infra/compose.yaml stop",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
