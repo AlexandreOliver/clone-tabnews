@@ -1,3 +1,11 @@
+import orchestrator from "../orchestrator";
+import database from "infra/database";
+
+beforeAll(async () => {
+  await orchestrator.waitForAllService();
+  await database.query("DROP SCHEMA PUBLIC CASCADE; CREATE SCHEMA PUBLIC");
+});
+
 test("POST to /api/v1/migrations should return 200", async () => {
   const response1 = await fetch("http://localhost:3000/api/v1/migrations", {
     method: "POST",
