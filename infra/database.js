@@ -15,10 +15,12 @@ async function query(query) {
   return result;
 }
 
-export default {
+const database = {
   query,
   getNewClient,
 };
+
+export default database;
 
 async function getNewClient() {
   const client = new pg.Client({
