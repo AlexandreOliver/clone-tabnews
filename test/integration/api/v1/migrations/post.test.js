@@ -1,9 +1,8 @@
 import orchestrator from "../orchestrator";
-import database from "infra/database";
 
 beforeAll(async () => {
   await orchestrator.waitForAllService();
-  await database.query("DROP SCHEMA PUBLIC CASCADE; CREATE SCHEMA PUBLIC");
+  await orchestrator.clearDatabase();
 });
 
 describe("POST /api/v1/migrations", () => {
